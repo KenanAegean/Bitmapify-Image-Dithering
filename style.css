@@ -1,0 +1,27 @@
+body {
+  font-family: monospace;
+  text-align: center;
+  background: #0d0d0d;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  padding: 2rem;
+}
+.logo {
+  animation: pulse 2s infinite;
+  margin-bottom: 20px;
+}
+.controls {
+  margin-bottom: 1rem;
+}
+canvas {
+  margin-top: 10px;
+  border: 1px solid #444;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}

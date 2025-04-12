@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bitmapify</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="assets/logo.svg" class="logo" alt="Bitmapify Logo">
+    <h1>Bitmapify</h1>
+    <div class="controls">
+      <input type="file" id="upload">
+      <label>Threshold: <input type="range" id="threshold" min="0" max="255" value="128"></label>
+      <label>Dithering:
+        <select id="dithering">
+          <option value="none">None</option>
+          <option value="random">Random</option>
+          <option value="bayer">Bayer</option>
+        </select>
+      </label>
+      <button id="download">Download PNG</button>
+      <button id="download-svg">Download SVG</button>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
