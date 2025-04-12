@@ -164,3 +164,7 @@ function setPreset(type) {
   }
   applyFilter();
 }
+
+document.getElementById('click-upload').addEventListener('click', () => {
+  document.getElementById('upload').click();
+});
