@@ -29,7 +29,10 @@ Live Demo: [https://kenanaegean.github.io/Bitmapify-Image-Dithering/](https://ke
 | ![original1](assets/forReadme/1.png) | ![processed1](assets/forReadme/3.png) |
 | ![original2](assets/forReadme/2.png) | ![processed2](assets/forReadme/4.png) |
 
+Before:
 ![screenshot1](assets/forReadme/before.png)
+
+After:
 ![screenshot2](assets/forReadme/after.png)
 
 
@@ -55,4 +58,4 @@ MIT License — feel free to use and remix!
 
 ---
 
-**Made with ❤️ by [Kenan Ege](https://github.com/KenanAegean)**
+**Made by [Kenan Ege](https://github.com/KenanAegean)**
