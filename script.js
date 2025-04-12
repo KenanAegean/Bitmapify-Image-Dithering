@@ -5,12 +5,11 @@ const brightnessInput = document.getElementById('brightness');
 const contrastInput = document.getElementById('contrast');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
+const dropZone = document.getElementById('drop-zone');
 
 let originalImage = null;
 
-upload.addEventListener('change', e => {
-  const file = e.target.files[0];
-  if (!file) return;
+function handleFile(file) {
   const img = new Image();
   img.src = URL.createObjectURL(file);
   img.onload = () => {
@@ -20,12 +19,38 @@ upload.addEventListener('change', e => {
     originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
     applyFilter();
   };
+}
+
+upload.addEventListener('change', e => {
+  if (e.target.files[0]) {
+    handleFile(e.target.files[0]);
+  }
 });
 
-thresholdInput.addEventListener('input', applyFilter);
-ditheringSelect.addEventListener('change', applyFilter);
-brightnessInput.addEventListener('input', applyFilter);
-contrastInput.addEventListener('input', applyFilter);
+dropZone.addEventListener('dragover', e => {
+  e.preventDefault();
+  dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.classList.remove('dragover');
+});
+
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  if (e.dataTransfer.files[0]) {
+    handleFile(e.dataTransfer.files[0]);
+  }
+});
+
+dropZone.addEventListener('click', () => {
+  upload.click();
+});
+
+[thresholdInput, ditheringSelect, brightnessInput, contrastInput].forEach(input =>
+  input.addEventListener('input', applyFilter)
+);
 
 function applyFilter() {
   if (!originalImage) return;
@@ -56,21 +81,29 @@ function applyFilter() {
       avg = adjust(avg);
       let color = 0;
 
-      if (method === 'none') {
-        color = avg > threshold ? 255 : 0;
-      } else if (method === 'random') {
-        const noise = Math.random() * 255;
-        color = avg > noise ? 255 : 0;
-      } else if (method === 'bayer') {
-        const matrixVal = bayer[y % 4][x % 4];
-        const adjusted = (matrixVal / 16) * 255;
-        color = avg > adjusted ? 255 : 0;
-      } else if (method === 'checkerboard') {
-        const pattern = (x + y) % 2 === 0;
-        color = avg > threshold + (pattern ? 40 : -40) ? 255 : 0;
-      } else if (method === 'horizontal-stripes') {
-        const stripe = y % 4 < 2;
-        color = avg > threshold + (stripe ? 30 : -30) ? 255 : 0;
+      switch (method) {
+        case 'none':
+          color = avg > threshold ? 255 : 0;
+          break;
+        case 'random':
+          color = avg > Math.random() * 255 ? 255 : 0;
+          break;
+        case 'bayer':
+          const bayerVal = bayer[y % 4][x % 4] / 16 * 255;
+          color = avg > bayerVal ? 255 : 0;
+          break;
+        case 'checkerboard':
+          color = avg > threshold + ((x + y) % 2 === 0 ? 40 : -40) ? 255 : 0;
+          break;
+        case 'horizontal-stripes':
+          color = avg > threshold + (y % 4 < 2 ? 30 : -30) ? 255 : 0;
+          break;
+        case 'vertical-stripes':
+          color = avg > threshold + (x % 4 < 2 ? 30 : -30) ? 255 : 0;
+          break;
+        case 'dots':
+          color = (x + y) % 6 === 0 ? (avg > threshold ? 255 : 0) : (avg > threshold - 30 ? 255 : 0);
+          break;
       }
 
       data[i] = data[i + 1] = data[i + 2] = color;
@@ -107,3 +140,27 @@ document.getElementById('download-svg').addEventListener('click', () => {
   link.download = 'bitmap.svg';
   link.click();
 });
+
+function setPreset(type) {
+  switch (type) {
+    case 'gritty':
+      thresholdInput.value = 90;
+      brightnessInput.value = -30;
+      contrastInput.value = 2;
+      ditheringSelect.value = 'random';
+      break;
+    case 'clean':
+      thresholdInput.value = 150;
+      brightnessInput.value = 10;
+      contrastInput.value = 1;
+      ditheringSelect.value = 'none';
+      break;
+    case 'highContrast':
+      thresholdInput.value = 128;
+      brightnessInput.value = 0;
+      contrastInput.value = 2.5;
+      ditheringSelect.value = 'checkerboard';
+      break;
+  }
+  applyFilter();
+}
