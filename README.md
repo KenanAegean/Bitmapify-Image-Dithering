@@ -8,9 +8,9 @@ Live Demo: [https://kenanaegean.github.io/Bitmapify-Image-Dithering/](https://ke
 
 ## ✨ Features
 
-- **Adjustable Parameters**: Fine-tune **Threshold**, **Brightness**, **Contrast**, and **Gamma** to achieve the perfect tonal balance.
-- **Pixelation Control**: Adjust pixelation level to create unique artistic effects.
-- **Sharpness Filter**: Apply a convolution-based sharpness effect to enhance detail.
+- **Adjustable Parameters**: Fine-tune **Threshold**, **Brightness**, **Contrast**, and **Gamma** for the perfect tonal balance.
+- **Pixelation Control**: Adjust the pixelation level to create unique artistic effects.
+- **Sharpness Filter**: Enhance detail with a convolution-based sharpness effect.
 - **Invert Colors Option**: Easily swap black and white for creative contrasts.
 - **Dithering Methods**: Choose from a variety of methods:
   - None
@@ -24,17 +24,7 @@ Live Demo: [https://kenanaegean.github.io/Bitmapify-Image-Dithering/](https://ke
 - **Download Options**: Save your creations as high-quality **PNG** or **SVG** images.
 - **Instant Preview**: Enjoy live rendering of adjustments in real time.
 - **Offline Support**: Leverages a service worker for caching, ensuring the app works without an internet connection.
-- **Fully Client-Side**: Your images are processed locally with no data uploaded to any server.
-
----
-
-## 🆕 Latest Changes
-
-- **New Dithering Options**: Added `Vertical Stripes` and `Diagonal Lines` modes to diversify bitmap patterns.
-- **Enhanced Visual Controls**: Introduced adjustable **Pixelation** and **Sharpness** controls for refined image processing.
-- **Invert Colors Toggle**: Now you can quickly flip the black-and-white output with a single click.
-- **Gamma Correction**: Fine-tune the gamma settings to achieve better tonal distribution.
-- **Improved Offline Experience**: Updated service worker configuration for more reliable offline access.
+- **Fully Client-Side**: All image processing is done locally, with no data uploaded to any server.
 
 ---
 
