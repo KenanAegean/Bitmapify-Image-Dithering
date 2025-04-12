@@ -39,45 +39,37 @@ h1 {
 
 .controls label {
   display: block;
-  margin: 15px auto;
+  margin: 10px 0;
   font-size: 1rem;
-  max-width: 320px;
 }
 
-input[type="range"] {
+.controls input[type="range"],
+.controls select {
   width: 100%;
+  max-width: 100%;
   margin-top: 5px;
+  height: 32px;
   appearance: none;
-  height: 6px;
-  background: #444;
+  background: #333;
   border-radius: 5px;
   outline: none;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+.controls input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  width: 14px;
-  height: 14px;
-  background: #00bcd4;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
+  background: #00bcd4;
   cursor: pointer;
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #00bcd4;
+.controls input[type="range"]::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
+  background: #00bcd4;
   cursor: pointer;
-}
-
-select {
-  padding: 5px;
-  margin-top: 5px;
-  background-color: #333;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 4px;
 }
 
 .controls button {
@@ -115,12 +107,18 @@ canvas {
   }
 
   .controls label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .controls input[type="range"],
+  .controls select {
+    font-size: 1rem;
   }
 
   .controls button {
     width: 100%;
     margin: 10px 0;
+    font-size: 1rem;
   }
 
   h1 {
